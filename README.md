@@ -1,7 +1,10 @@
 
 # React AluraKut
 Projeto feito acompanhando a semana da Imersão React da Alura. 
-![](https://i.imgur.com/ZIIslJ3.png)
+
+[](https://user-images.githubusercontent.com/3947146/125499069-79dabd3c-9476-40a3-a446-51387b9a813a.mov)
+
+
 
   
 ## Como rodar
