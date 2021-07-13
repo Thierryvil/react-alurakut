@@ -1,6 +1,53 @@
 import styled from 'styled-components';
 import Box from '../Box';
 
+
+function SeeAllLink(lenghtOfList, target) {
+  if (lenghtOfList > 6) {
+    return (
+      <a href={`${target}`}>
+        <span>Ver Todos</span>
+      </a >
+    )
+  }
+}
+
+export function ProfileRelationsBox(props) {
+  return (
+    <ProfileRelationsBoxWrapper>
+      <h2 className="smallTitle">
+        <span>{props.title} </span>
+        <a href={props.target}>
+          <span>({props.arrayRelations.length})</span>
+        </a>
+      </h2>
+
+      <ul>
+        {
+          props.arrayRelations.slice(0, 6).map((relation) => {
+            return (
+
+              <li key={relation.id ? relation.id : relation.name}>
+                <a href={relation.url} target="_blank" rel="noreferrer">
+                  <img
+                    src={relation.image}
+                    alt={relation.name}
+                  />
+                  <span>{relation.name}</span>
+                </a>
+              </li>
+            )
+          })
+        }
+      </ul>
+      {
+        SeeAllLink(props.arrayRelations.length, props.target)
+      }
+    </ProfileRelationsBoxWrapper>
+  )
+}
+
+
 export const ProfileRelationsBoxWrapper = styled(Box)`
   ul {
     display: grid;
