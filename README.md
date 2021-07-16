@@ -10,8 +10,9 @@ https://user-images.githubusercontent.com/3947146/125980800-9d679413-4dee-4f71-8
 
   
 ## Como rodar
-Crie uma conta e um projeto em https://www.datocms.com/<br/>
-Crie um Model chamado Community com os seguintes records community_id, title, avatar_url, html_url<br/>
+Crie uma conta e um projeto em https://www.datocms.com/
+
+Crie um Model chamado Community com os seguintes records community_id, title, avatar_url, html_url
 
 Clone o projeto
 
@@ -30,18 +31,19 @@ Copie o arquivo das variaveis
 copy .env.local .env 
 # linux
 cp .env.local .env 
-
-DATOCMS_READONLY_KEY=
-JWT_SECRET=
 ```
-https://www.datocms.com/docs/content-management-api/authentication
-Edite o arquivo com seu token do CMS e o Java Web Token Secret 
-<br/>
+
+Entendendo as váriaveis de ambiente
+```
+NODE_ENV production ou development
+SERVER_URL URL de produção
+DATOCMS_READONLY_KEY Ao criar uma conta o DATO CMS entrega uma API para você
+JWT_SECRET O JSON Web Token Secreto da sua aplicação
+```
 
 Instale as dependecias
 
 ```bash
-  npm install 
   yarn install
 ```
 
