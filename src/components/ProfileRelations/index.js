@@ -30,7 +30,7 @@ export function ProfileRelationsBox(props) {
               <li key={relation.id ? relation.id : relation.login}>
                 <a
                   href={
-                    relation.html_url ? relation.html_url : relation.htmlRrl
+                    relation.html_url ? relation.html_url : relation.htmlUrl
                   }
                   target="_blank"
                   rel="noreferrer"

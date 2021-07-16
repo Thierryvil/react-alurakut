@@ -7,11 +7,11 @@ import {
   OrkutNostalgicIconSet,
 } from "../src/lib/AlurakutCommons";
 import { ProfileRelationsBox } from "../src/components/ProfileRelations";
-import datoCMSClient from "../cms";
 
 function ProfileSidebar(props) {
   return (
     <Box>
+
       <img
         src={`https://github.com/${props.githubUser}.png`}
         style={{ borderRadius: "8px" }}
@@ -46,9 +46,16 @@ export default function Home() {
         setGitHubDevelopers(response);
       });
 
-    datoCMSClient.items
-      .all({ "filter[type]": "community" })
-      .then((records) => setCommunity(records));
+
+    fetch('/api/comunidades', {
+      headers: {
+        "Content-Type": "application/json"
+      }
+    }).then(async (response) => await response.json()).then((data) => {
+      console.log(community)
+      setCommunity(data);
+    }
+    )
   }, []);
 
   return (
@@ -75,8 +82,8 @@ export default function Home() {
 
                 const newCommunity = {
                   id: new Date().toISOString(),
-                  name: dataFormCommunity.get("communityName"),
-                  image: dataFormCommunity.get("communityImage"),
+                  title: dataFormCommunity.get("communityName"),
+                  avatarUrl: dataFormCommunity.get("communityImage"),
                   url: dataFormCommunity.get("communityURL"),
                 };
 
