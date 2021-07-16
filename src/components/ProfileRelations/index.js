@@ -23,7 +23,6 @@ export function ProfileRelationsBox(props) {
 
       <ul>
         {props.items
-          .reverse()
           .slice(0, 6)
           .map((relation) => {
             return (

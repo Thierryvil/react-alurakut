@@ -41,22 +41,17 @@ export default function Home() {
 
   React.useEffect(() => {
     fetch(`https://api.github.com/users/${githubUser}/following`)
-      .then((response) => response.json())
-      .then((response) => {
-        setGitHubDevelopers(response);
-      });
-
+      .then(async (response) => await response.json())
+      .then((data) => setGitHubDevelopers(data));
 
     fetch('/api/comunidades', {
       headers: {
         "Content-Type": "application/json"
       }
-    }).then(async (response) => await response.json()).then((data) => {
-      console.log(community)
-      setCommunity(data);
-    }
-    )
-  }, []);
+    })
+      .then(async (response) => await response.json())
+      .then((data) => setCommunity(data))
+  }, [])
 
   return (
     <>
