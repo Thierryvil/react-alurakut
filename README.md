@@ -28,9 +28,12 @@ Copie o arquivo das variaveis
 copy .env.local .env 
 # linux
 cp .env.local .env 
+
+DATOCMS_READONLY_KEY=
+JWT_SECRET=
 ```
-Edite o arquivo com seu token 
 https://www.datocms.com/docs/content-management-api/authentication
+Edite o arquivo com seu token do CMS e o Java Web Token Secret 
 <br/>
 
 Instale as dependecias

@@ -1,12 +1,15 @@
 import React from "react";
 import MainGrid from "../src/components/MainGrid";
 import Box from "../src/components/Box";
+import nookies from 'nookies';
 import {
   AlurakutMenu,
   AlurakutProfileSidebarMenuDefault,
   OrkutNostalgicIconSet,
 } from "../src/lib/AlurakutCommons";
 import { ProfileRelationsBox } from "../src/components/ProfileRelations";
+import { server } from '../config';
+import jwt from 'jsonwebtoken';
 
 function ProfileSidebar(props) {
   return (
@@ -34,8 +37,9 @@ function WelcomeMessage(props) {
   return <h1 className="title">Bem-vindo(a), {props.githubUser}</h1>;
 }
 
-export default function Home() {
-  const githubUser = "thierryvil";
+
+export default function Home(props) {
+  const { githubUser } = props;
   const [githubDevelopers, setGitHubDevelopers] = React.useState([]);
   const [community, setCommunity] = React.useState([]);
 
@@ -133,4 +137,34 @@ export default function Home() {
       </MainGrid>
     </>
   );
+}
+
+
+export async function getServerSideProps(context) {
+  const cookies = nookies.get(context)
+  const token = cookies.USER_TOKEN;
+
+  const { isAuthenticated } = await fetch(`${server}/api/auth`, {
+    headers: {
+      Authorization: token
+    }
+  })
+    .then((resposta) => resposta.json())
+
+  if (!isAuthenticated) {
+    return {
+      redirect: {
+        destination: '/login',
+        permanent: false,
+      }
+    }
+  }
+
+  const { githubUser } = jwt.decode(token);
+
+  return {
+    props: {
+      githubUser
+    },
+  }
 }
